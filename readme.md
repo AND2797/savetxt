@@ -3,3 +3,6 @@ key|value|tags.
 
 i wrote this so i can save important links to a file 
 and use this as a bookmark manager.
+
+open $(savetxt browse links)
+
