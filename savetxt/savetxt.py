@@ -31,9 +31,9 @@ def cat(file):
     home = Path.joinpath(Path.home(), 'savetxt')
     filepath = Path.joinpath(home, f'{file}.csv')
     with open(filepath, 'r') as csvfile:
-        reader = csv.reader(csvfile)
+        reader = csv.reader(csvfile, delimiter='|')
         for row in reader:
-            print(row[0])
+            print(row)
 
 
 @click.command()
@@ -55,6 +55,9 @@ cli.add_command(put)
 cli.add_command(cat)
 cli.add_command(browse)
 
+#TODO: prune functionality to remove duplicates
+#TODO: functionality to add how many times link was accessed
+#TODO: functionality to add when link was last accessed
 
 if __name__ == '__main__':
     cli()
