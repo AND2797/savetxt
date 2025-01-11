@@ -22,21 +22,22 @@ def put(file: str, tags: str, value: str):
     home = Path.joinpath(Path.home(), 'savetxt')
     header = ["tags", "value"]
     Path(home).mkdir(exist_ok=True)
-    filepath = Path.joinpath(home, f'{file}.csv')
+    filepath = Path.joinpath(home, f'{file}.json')
     row_to_add = pd.DataFrame(columns=header, data=[[tags, value]])
     if filepath.exists():
-        row_to_add.to_csv(filepath, header=False, mode='a', index=False)
+        row_to_add.to_json(filepath, mode='a', orient='records', lines=True, index=None)
     else:
-        row_to_add.to_csv(filepath, index=None)
+        row_to_add.to_json(filepath, mode='w', orient='records', lines=True, index=None)
 
 
 @click.command()
 @click.argument('file')
 def cat(file: str):
     home = Path.joinpath(Path.home(), 'savetxt')
-    filepath = Path.joinpath(home, f'{file}.csv')
+    filepath = Path.joinpath(home, f'{file}.json')
     if filepath.exists():
-        data = pd.read_csv(filepath)
+        data = pd.read_json(filepath, orient='records', lines=True)
+        pd.set_option('display.max_colwidth', None)
         print(data)
 
 
