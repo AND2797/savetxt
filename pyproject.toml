@@ -16,10 +16,8 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 [project.dependencies]
-dependencies = [
-  "pandas>=1.3.0,<2.0.0",
-  "click>=8.0.0,<9.0.0"
-]
+pandas = ">=1.3.0,<2.0.0"
+click = ">=8.0.0,<9.0.0"
 
 [project.urls]
 Homepage = "https://github.com/AND2797/savetxt"
