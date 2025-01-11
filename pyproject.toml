@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 name = "savetxt"
 version = "0.0.1"
 authors = [
-  { name="aditya", email="" },
+  { name="aditya", email="todo@createanemail.com" },
 ]
 description = "cli program to save and view text with corresponding tags"
 readme = "readme.md"
