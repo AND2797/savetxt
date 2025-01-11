@@ -1,8 +1,6 @@
 import click
 from pathlib import Path
-import csv
 import pandas as pd
-import subprocess
 
 
 @click.group()
@@ -16,11 +14,9 @@ def cli():
 @click.argument('value')
 def put(file: str, tags: str, value: str):
     """
-
     :param file: filename
-    :param key: key for link
-    :param value: value for link
     :param tags: tags for link. eg: python:multiprocess:socket
+    :param value: value for link
     :return:
     """
     home = Path.joinpath(Path.home(), 'savetxt')
@@ -29,7 +25,7 @@ def put(file: str, tags: str, value: str):
     filepath = Path.joinpath(home, f'{file}.csv')
     row_to_add = pd.DataFrame(columns=header, data=[[tags, value]])
     if filepath.exists():
-        row_to_add.to_csv(filepath, header=False, mode='a', index=False, sep='|')
+        row_to_add.to_csv(filepath, header=False, mode='a', index=False)
     else:
         row_to_add.to_csv(filepath, index=None)
 
