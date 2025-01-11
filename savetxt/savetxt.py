@@ -12,10 +12,9 @@ def cli():
 
 @click.command()
 @click.argument('file')
-@click.argument('key')
-@click.argument('tags', default='')
+@click.argument('tags')
 @click.argument('value')
-def put(file: str, key: str, value: str, tags=''):
+def put(file: str, tags: str, value: str):
     """
 
     :param file: filename
@@ -25,10 +24,10 @@ def put(file: str, key: str, value: str, tags=''):
     :return:
     """
     home = Path.joinpath(Path.home(), 'savetxt')
-    header = ["key", "tags", "value"]
+    header = ["tags", "value"]
     Path(home).mkdir(exist_ok=True)
     filepath = Path.joinpath(home, f'{file}.csv')
-    row_to_add = pd.DataFrame(columns=header, data=[[file, key, value]])
+    row_to_add = pd.DataFrame(columns=header, data=[[tags, value]])
     if filepath.exists():
         row_to_add.to_csv(filepath, header=False, mode='a', index=False, sep='|')
     else:
