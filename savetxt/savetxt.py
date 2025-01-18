@@ -37,8 +37,7 @@ def cat(file: str):
     filepath = Path.joinpath(home, f'{file}.json')
     if filepath.exists():
         data = pd.read_json(filepath, orient='records', lines=True)
-        pd.set_option('display.max_colwidth', None)
-        print(data)
+        print(data.to_string())
 
 
 def get_site(row):
